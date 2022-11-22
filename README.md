@@ -1,5 +1,4 @@
 ### Hexlet tests and linter status:
-[![Actions Status](https://github.com/GregTMJ/python-project-51/workflows/hexlet-check/badge.svg)](https://github.com/GregTMJ/python-project-51/actions)
 [![Python CI](https://github.com/GregTMJ/python-project-51/actions/workflows/app-check.yml/badge.svg?branch=main)](https://github.com/Gregtmj/python-project-51/actions/workflows/app-check.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/118fe8412d2e28e6e733/maintainability)](https://codeclimate.com/github/GregTMJ/page-loader/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/118fe8412d2e28e6e733/test_coverage)](https://codeclimate.com/github/GregTMJ/page-loader/test_coverage)
