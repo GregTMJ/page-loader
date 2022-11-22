@@ -7,10 +7,10 @@
 ## Getting Started
 
 #### Clone the current repository via command:
-```git clone https://github.com/GregTMJ/python-project-51.git```
+```git clone https://github.com/GregTMJ/page-loader.git```
 
 ## Requirements
-* python >= 3.7
+* python >= 3.10
 * Poetry >= 1.14
 * make >= 4
 
