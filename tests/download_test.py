@@ -19,7 +19,7 @@ def test_download():
         with requests_mock.Mocker() as mock:
             mock.get(URL)
             new_path = download(URL, tempdir)
-            assert new_path == f'{tempdir}\\{renaming_test_url}.html'
+            assert new_path == f'{tempdir}/{renaming_test_url}.html'
 
 
 def test_connection_error():
