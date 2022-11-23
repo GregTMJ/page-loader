@@ -2,7 +2,7 @@ import os
 import re
 
 from page_loader.handlers.assets_handler import handle_assets
-from page_loader.handlers.request_handler import get_content
+from page_loader.handlers.request_handler import get_html_content
 
 
 def download(url, file_path=''):
@@ -18,7 +18,7 @@ def download(url, file_path=''):
     html_file_name: str = renamed_url + '.html'
     content_file_path = os.path.join(full_file_path, html_content_file_path)
     html_file_path: str = os.path.join(full_file_path, html_file_name)
-    html_content = get_content(url)
+    html_content = get_html_content(url)
     prettify_html_content, assets = handle_assets(html_content, url,
                                                   content_file_path)
     with open(html_file_path, 'w') as file:

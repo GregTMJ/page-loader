@@ -62,7 +62,8 @@ def test_real_download():
     with tempfile.TemporaryDirectory() as tmpdir:
         new_html_file, html_content_files = renaming_url(URL)
         resulting_path = download(URL, tmpdir)
-        assert resulting_path == f'{tmpdir}/{new_html_file}'
+        expected_path = os.path.join(tmpdir, new_html_file)
+        assert resulting_path == expected_path
 
 
 def test_download():
@@ -76,7 +77,8 @@ def test_download():
         with requests_mock.Mocker() as mock:
             mock.get(URL)
             new_path = download(URL, tempdir)
-            assert new_path == f'{tempdir}/{new_html_file}'
+            expected_path = os.path.join(tempdir, new_html_file)
+            assert new_path == expected_path
 
 
 def test_connection_error():
