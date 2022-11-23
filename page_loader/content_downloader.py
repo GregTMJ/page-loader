@@ -1,3 +1,4 @@
+import logging
 import os
 
 from progress.bar import IncrementalBar
@@ -16,8 +17,10 @@ def download_content(assets_path: str, assets: list):
     with IncrementalBar('Loading...', max=bar_assets_len) as bar:
         bar.suffix = "%(percent)d%%"
         bar.fill = '#'
+        logging.info(f"writing inside asset's directory {assets_path}")
         for url, asset_name in assets:
             asset_content = get_asset_content(url)
             with open(os.path.join(assets_path, asset_name), 'wb') as as_file:
+                logging.info(f'writing inside {asset_name}')
                 as_file.write(asset_content)
                 bar.next()

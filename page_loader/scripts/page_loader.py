@@ -15,9 +15,9 @@ def main():
     args = parse_args()
 
     try:
-        file_path = download(args.url, args.output)
+        download(args.url, args.output)
         logging.info("The web page will be shortly downloaded "
-                     f"and added to {file_path}")
+                     f"and added to {args.output}")
     except Exception as e:
         logging.error(e)
         sys.exit(1)

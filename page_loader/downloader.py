@@ -44,4 +44,6 @@ def renaming_url(url: str) -> tuple:
     if 'https://' in url:
         url = re.sub(r"https://", '', url)
     common_name: str = re.sub(r"(\.)|(/)", "-", url)
+    if common_name[-1] == '-':
+        return common_name[:-1] + '.html', common_name[:-1] + '_files'
     return common_name + '.html', common_name + '_files'
