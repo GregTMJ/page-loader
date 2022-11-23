@@ -21,19 +21,18 @@ def handle_assets(html, url, content_files_path):
     :return: prettify html +
     """
     soup = BeautifulSoup(html, 'html.parser')
-    tags = [*soup('link'), *soup('script'), *soup('img')]
+    tags = [*soup('script'), *soup('link'), *soup('img')]
     assets = []
     for tag in tags:
         attribute_name: str = HTML_ATTRS.get(tag.name)
         assets_url = tag.get(attribute_name)
-        general_assets_url = ''
         if assets_url:
             general_assets_url = urljoin(f'{url}/', assets_url)
-        if urlparse(url).netloc == urlparse(general_assets_url).netloc:
-            asset_file_name: str = asset_file_naming(general_assets_url)
-            assets.append((general_assets_url, asset_file_name))
-            tag[attribute_name] = os.path.join(content_files_path,
-                                               asset_file_name)
+            if urlparse(url).netloc == urlparse(general_assets_url).netloc:
+                asset_file_name: str = asset_file_naming(general_assets_url)
+                assets.append((general_assets_url, asset_file_name))
+                tag[attribute_name] = os.path.join(content_files_path,
+                                                   asset_file_name)
     return soup.prettify(), assets
 
 
@@ -43,6 +42,8 @@ def asset_file_naming(url: str) -> str:
     :param url: the given url of the asset
     :return: new asset name
     """
+    if 'https://' in url:
+        url = re.sub(r"https://", '', url)
     url = urlparse(url)
     main_name, extension = os.path.splitext(url.path)
     reformatted_name = re.sub(r"(\.)|(/)", "-", main_name)

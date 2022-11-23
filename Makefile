@@ -18,3 +18,6 @@ test:
 
 test-coverage:
 	poetry run pytest --cov=. --cov-report xml tests
+
+page-loader:
+	poetry run page-loader
