@@ -1,3 +1,4 @@
+import codecs
 import logging
 import os
 import re
@@ -21,7 +22,7 @@ def download(url, file_path=''):
     html_content = get_html_content(url)
     prettify_html_content, assets = handle_assets(html_content, url,
                                                   html_content_file_path)
-    with open(html_file_path, 'w') as file:
+    with codecs.open(html_file_path, 'w', 'utf-8') as file:
         logging.info("writing into new local html file: "
                      f"{html_file_path}")
         file.write(prettify_html_content)
