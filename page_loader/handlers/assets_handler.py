@@ -42,10 +42,8 @@ def asset_file_naming(url: str) -> str:
     :param url: the given url of the asset
     :return: new asset name
     """
-    if 'https://' in url:
-        url = re.sub(r"https://", '', url)
     url = urlparse(url)
     main_name, extension = os.path.splitext(url.path)
-    reformatted_name = re.sub(r"(\.)|(/)", "-", main_name)
+    reformatted_name = re.sub(r"(\.)|(/)", "-", url.netloc + main_name)
     return reformatted_name + extension if extension \
         else reformatted_name + '.html'

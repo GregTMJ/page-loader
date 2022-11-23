@@ -3,6 +3,8 @@ import logging
 import os
 import re
 
+from urllib.parse import urlparse
+
 from page_loader.content_downloader import download_content
 from page_loader.handlers.assets_handler import handle_assets
 from page_loader.handlers.request_handler import get_html_content
@@ -41,9 +43,10 @@ def renaming_url(url: str) -> tuple:
     :param url: the web request
     :return: main html file name + directory name for assets
     """
-    if 'https://' in url:
-        url = re.sub(r"https://", '', url)
-    common_name: str = re.sub(r"(\.)|(/)", "-", url)
+    url = urlparse(url)
+    path, _ = os.path.splitext(url.path)
+    common_name: str = re.sub(r"(\.)|(/)", "-", url.netloc + path)
     if common_name[-1] == '-':
-        return common_name[:-1] + '.html', common_name[:-1] + '_files'
+        common_name = common_name[:-1]
+        return common_name + '.html', common_name + '_files'
     return common_name + '.html', common_name + '_files'
