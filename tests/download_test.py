@@ -38,18 +38,37 @@ ASSETS = [
 
 
 def get_fixture_path(file_name):
+    """
+    Getting the path of the file inside the fixture
+    """
     work_dir = os.path.dirname(os.path.abspath(__file__))
     return os.path.join(work_dir, 'fixtures', file_name)
 
 
 def get_fixture_data(file_path, mode='r') -> str | bytes:
+    """
+    Getting the content from fixtures file
+    """
     full_file_path = get_fixture_path(file_path)
     with codecs.open(full_file_path, mode, 'utf-8') as f:
         result = f.read()
     return result
 
 
+def test_real_download():
+    """
+    Testing real download
+    """
+    with tempfile.TemporaryDirectory() as tmpdir:
+        new_html_file, html_content_files = renaming_url(URL)
+        resulting_path = download(URL, tmpdir)
+        assert resulting_path == f'{tmpdir}/{new_html_file}'
+
+
 def test_download():
+    """
+    Testing the downloader file
+    """
     new_html_file, html_content_files = renaming_url(URL)
     assert new_html_file, html_content_files == FILE_NAMING
 
