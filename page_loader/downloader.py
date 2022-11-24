@@ -17,6 +17,7 @@ def download(url, file_path=''):
     :param file_path: the directory where the content will be downloaded
     :return: directory name
     """
+    logging.info(f'requested url: {url}')
     full_file_path = os.path.join(os.getcwd(), file_path)
     html_file_name, html_content_file_path = renaming_url(url)
     content_file_path = os.path.join(full_file_path, html_content_file_path)
